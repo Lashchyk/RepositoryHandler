@@ -106,7 +106,7 @@ class Repository:
         '''Return log directly from the repository server'''
         raise NotImplementedError
 
-    def diff(self, uri, branch=None, revs=None, files=None):
+    def diff(self, uri, branch=None, revs=None, files=None, no_whitespace=False):
         '''Return diff for files in working copy betweeen revisions'''
         raise NotImplementedError
 

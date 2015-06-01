@@ -335,7 +335,7 @@ class SVNRepository(Repository):
 
         self.log(uri, rev, files)
 
-    def diff(self, uri, branch=None, revs=None, files=None):
+    def diff(self, uri, branch=None, revs=None, files=None, no_whitespace=False):
         repo_uri = get_auth_info(uri)['uri']
 
         self._check_uri(repo_uri)
@@ -358,6 +358,9 @@ class SVNRepository(Repository):
                 cmd.extend(['-r', revs[0]])
             elif len(revs) > 1:
                 cmd.extend(['-r', revs[0] + ':' + revs[1]])
+        
+        if no_whitespace is True:
+	    cmd.extend(['-x', '--ignore-all-space'])
 
         if files is not None:
             for file in files:
